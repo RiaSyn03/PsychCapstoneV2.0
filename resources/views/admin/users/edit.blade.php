@@ -140,8 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{{ url('user') }}" class="btn btn-secondary">Cancel</a>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>

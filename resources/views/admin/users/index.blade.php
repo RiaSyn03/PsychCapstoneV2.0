@@ -113,15 +113,15 @@
                                             <td hidden>{{ $user->year }}</td>
                                             <td>{{ $user->role->role_name }}</td>
                                             <td>
-                                                {{-- <button type="button" class="btn btn-primary btn-sm edit ml-2">
-
-                                                </button> --}}
-                                                <a class="btn btn-primary btn-sm edit ml-2" href="/user-edit/{{$user->id}}"><i class="fa fa-edit"></i></a>
+                                                <button type="button" class="btn btn-primary btn-sm edit ml-2"><i
+                                                    class="fa fa-edit"></i>
+                                            </button>
+                                                {{-- <a class="btn btn-primary btn-sm edit ml-2" href="/user-edit/{{$user->id}}"><i class="fa fa-edit"></i></a> --}}
 
                                                 <form action="/user-delete/{{$user->id}}" method="POST" class="float-left">
                                                         {{ method_field('DELETE') }}
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure delete {{$user->lname, $user->fname}}?')"><i class="fa fa-trash-o"></i></button>
                                                     </form>
                                             </td>
                                         </tr>
@@ -141,7 +141,10 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="viewModalLabel">Account Information</h5>
                             </div>
-                            <form action="user.update" method="POST" id="editForm">
+                            @if($errors->any())
+                                {{ implode('', $errors->all('<div>:message</div>')) }}
+                            @endif
+                            <form action="/user-update/{{$user->id}}" method="POST">
                                 {{ method_field('PUT') }}
                                 @csrf
                                 <div class="modal-body">
@@ -151,7 +154,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text">ID Number</span>
                                                 <input type="text" id="idnum" name="idnum"
-                                                    class="form-control" required>
+                                                    class="form-control" value="{{$user->idnum}}" required>
                                             </div>
                                         </div>
                                         <div class="col-4 col-sm-6">
@@ -159,56 +162,54 @@
                                         <div class="col-12">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text">First and last name</span>
-                                                <input type="text" id="fname" name="fname"
+                                                <input type="text" id="fname" value="{{$user->fname}}" name="fname"
                                                     aria-label="First name" class="form-control">
-                                                <input type="text" id="lname" name="lname"
+                                                <input type="text" id="lname" value="{{$user->lname}}" name="lname"
                                                     aria-label="Last name" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-8 col-sm-6">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text">Email</span>
-                                                <input type="text" id="email" name="email"
+                                                <input type="text" id="email" value="{{$user->email}}" name="email"
                                                     class="form-control" value="" required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <label class="input-group-text"
                                                     for="year">{{ __('Year') }}</label>
                                                 <select class="form-select" id="year" name="year">
-                                                    <option value="-">-</option>                                                   
-                                                    <option value="1st Year">1st Year</option>
-                                                    <option value="2nd Year">2nd Year</option>
-                                                    <option value="3rd Year">3rd Year</option>
-                                                    <option value="4th Year">4th Year</option>
-                                                    <option value="5th Year">5th Year</option>
-                                                    <option value="Non-Student">Non-Student</option>
+                                                    <option value="-" {{$user->year == '-' ? 'selected': ''}}>-</option>
+                                                    <option value="1st Year"{{$user->year == '1st Year' ? 'selected': ''}}>1st Year</option>
+                                                    <option value="2nd Year"{{$user->year == '2nd Year' ? 'selected': ''}}>2nd Year</option>
+                                                    <option value="3rd Year"{{$user->year == '3rd Year' ? 'selected': ''}}>3rd Year</option>
+                                                    <option value="4th Year"{{$user->year == '4th Year' ? 'selected': ''}}>4th Year</option>
+                                                    <option value="5th Year"{{$user->year == '5th Year' ? 'selected': ''}}>5th Year</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="input-group mb-3">
-                                            <label class="input-group-text"
-                                                for="course">{{ __('Course') }}</label>
-                                            <select class="form-select" id="course" name="course">
-                                                @foreach ($courses as $course)
-                                                    <option>{{ $course->course_name }}</option>
-                                                @endforeach
-                                            </select>
-
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text"
+                                                    for="course">{{ __('Course') }}</label>
+                                                <select class="form-select" id="course_id" name="course_id">
+                                                    @foreach ($courses as $course)
+                                                        <option value="{{$course->id}}" {{$user->course_id == $course->id ? 'selected': ''}}>{{ $course->course_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                        {{-- <input type="button" value="save"> --}}
-                                    <button type="submit" onclick="" class="btn btn-primary">Save changes</button>
+                                    <a href="{{ url('user') }}" class="btn btn-secondary">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="modal fade">
                 </div>
-                </form>
                 <!-- END OF EDIT MODAL -->
 
                 <!-- ADD COUNSELOR MODAL -->
@@ -409,7 +410,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable();
 
@@ -435,7 +436,7 @@
 
             });
         });
-    </script> --}}
+    </script>
 </body>
 
 </html>

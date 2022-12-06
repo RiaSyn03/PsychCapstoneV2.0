@@ -57,10 +57,10 @@
                     <div class="col-4">
                         <div class="card border-success bg-success text-center mb-3" style="max-width: 25rem;">
                             <div class="card-header text-success">
-                                <h3>Approved Appointments</h3>
+                                <h3>Appointments</h3>
                             </div>
                             <div class="card-body text-white">
-                              <h1>{{$appointments}}</h5>
+                              <h1>{{$totalappointments}}</h5>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
 </section>
         @endhasrole
 
-                @hasrole('student')         
+                @hasrole('student')
 <head>
                 <link href="{{ asset('css/studenthomepage.css') }}" rel="stylesheet">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
@@ -102,9 +102,9 @@
                 <li><a href="{{ url('exams_history') }}" >Exam History</a></li>
              <li><a href="{{ url('home') }}" class="active">Home</a></li>
          </ul>
-     </header> 
-     <div class="student-align">  
-     <div class="studentcontainer"> 
+     </header>
+     <div class="student-align">
+     <div class="studentcontainer">
         <div class="menu">
     <h2>Menu</h2>
 </div>
@@ -113,32 +113,32 @@
               <div class="swiper-slide"><img src="{{ asset('img/wellness.jpeg') }}">
           <center>
             <p>Wellness</p><br>
-            <h5><a href="wellness">  <button class="takebtn" >View Guidelines</button></a></h5></center>  
+            <h5><a href="wellness">  <button class="takebtn" >View Guidelines</button></a></h5></center>
             </div>
               <div class="swiper-slide"><img src="{{ asset('img/stressscale.jpg') }}">
               <center>
               <p>Stress Scale</p>
-              <h5><a href="stress_exam">  <button class="takebtn" >Take Exam</button></a></h5></center>  
+              <h5><a href="stress_exam">  <button class="takebtn" >Take Exam</button></a></h5></center>
             </div>
               <div class="swiper-slide"><img src="{{ asset('img/personality.jpg') }}">
               <center>
               <p>Personality</p>
-              <h5><a href="personality_exam">  <button class="takebtn" >Take Exam</button></a></h5></center>  
+              <h5><a href="personality_exam">  <button class="takebtn" >Take Exam</button></a></h5></center>
               </div>
               <div class="swiper-slide"><img src="{{ asset('img/learner.jpg') }}">
               <center>
               <p>Learner</p><br>
-              <h5><a href="learner_exam">  <button class="takebtn">Take Exam</button></a></h5></center>  
+              <h5><a href="learner_exam">  <button class="takebtn">Take Exam</button></a></h5></center>
             </div>
             </div>
             <div class="homeswiper-pagination"></div>
           </div>
           <div class="aboutus">
           <h1>About Us</h1>
-          
+
         </div>
         <div class="description">
-          <h4>PsychCare2.0</h4> <p>is about checking your mental health. Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make healthy choices. Mental health is important at every stage of life, from childhood and adolescence through adulthood. Issues that are related to mental health needs attention and guidance as soon as possible. 
+          <h4>PsychCare2.0</h4> <p>is about checking your mental health. Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make healthy choices. Mental health is important at every stage of life, from childhood and adolescence through adulthood. Issues that are related to mental health needs attention and guidance as soon as possible.
                      Through this system, you can seek guidance on our reliable counselors here in the University.<br><a href="{{ url('appointment_history') }}"><button type="button" class="takebtn" >Appoint Now </button></a></p>
           </div>
           <div class="description2">
@@ -150,12 +150,12 @@
 <div class="description4">
           <h4>Personality</h4> <p>is to check what behavior you have. Are you comfortable being alone or are you more comfortable being surrounded by a lot of people instead ? You can find out what type of person you are on this test. </p>
 </div>
-        
+
 </div>
           <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
           <script src="js/carousel.js"></script>
     </section>
-                
+
                 @endhasrole
                 @hasrole('counselor')
                 <link href="{{ asset('css/category.css') }}" rel="stylesheet">
@@ -182,7 +182,7 @@
                 </li>
                 <li><a href="{{ url('viewtime') }}">Appointments</a></li>
                 <li><a href="{{ url('viewquestions') }}">Questions</a></li>
-             <li><a href="{{ url('home') }}" class="active">Home</a></li>  
+             <li><a href="{{ url('home') }}" class="active">Home</a></li>
          </ul>
      </header>
      <div class="category">
@@ -222,11 +222,11 @@
 
                 </div>
             </div><br><br><br><br><br><br><br><br>
-     
+
     <center><h1>Results Score</h1></center>
     <div class="category-align">
 <div class="categorycontainer">
-    
+
         <div class="categorycard2">
         <div class="categoryimgBx2">
             <img src="{{ asset('img/stressscale.jpg') }}">
@@ -238,7 +238,7 @@
         <br> <b>Moderate</b> - 10-15
         <br><b>Moderately Severe</b> - 16-19
         <br><b>Severe</b> - 20-30</p>
-        
+
         </div>
         </div>
         <div class="categorycard2">
@@ -258,7 +258,7 @@
             <img src="{{ asset('img/learner.jpg') }}">
         </div>
         <div class="categorycontent2">
-            <h2>LEARNER</h2> 
+            <h2>LEARNER</h2>
             <p><b>Linguistc</b> - 0-12
             <br><b>Kinesthetic</b> - 13-25
             <br><b>Visual</b> - 26-50</p>

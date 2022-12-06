@@ -9,7 +9,7 @@ class Course extends Model
     protected $guarded = [];
 
     public function users() {
-        return $this->hasMany('App\User');
+        return $this->belongsToMany('App\User');
     }
 
     public function department() {

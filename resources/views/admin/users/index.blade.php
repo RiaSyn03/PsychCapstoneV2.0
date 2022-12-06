@@ -109,13 +109,15 @@
                                             <td>{{ $user->lname }}</td>
                                             <td>{{ $user->fname }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td hidden>{{ $user->course_name}}</td>
+                                            <td hidden>{{ $user->course->course_name ?? '--'}}</td>
                                             <td hidden>{{ $user->year }}</td>
                                             <td>{{ $user->role->role_name }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm edit ml-2"><i
-                                                        class="fa fa-edit"></i>
-                                                </button>
+                                                {{-- <button type="button" class="btn btn-primary btn-sm edit ml-2">
+
+                                                </button> --}}
+                                                <a class="btn btn-primary btn-sm edit ml-2" href="/user-edit/{{$user->id}}"><i class="fa fa-edit"></i></a>
+
                                                 <form action="/user-delete/{{$user->id}}" method="POST" class="float-left">
                                                         {{ method_field('DELETE') }}
                                                             @csrf
@@ -139,12 +141,13 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="viewModalLabel">Account Information</h5>
                             </div>
-                            <form action="/user" method="POST" id="editForm">
-                                {{ csrf_field() }}
+                            <form action="user.update" method="POST" id="editForm">
                                 {{ method_field('PUT') }}
+                                @csrf
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-8 col-sm-6">
+                                            {{-- <input type="hidden" id="id" name="id" value="0"> --}}
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text">ID Number</span>
                                                 <input type="text" id="idnum" name="idnum"
@@ -196,7 +199,8 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                        {{-- <input type="button" value="save"> --}}
+                                    <button type="submit" onclick="" class="btn btn-primary">Save changes</button>
                                 </div>
                         </div>
                     </div>
@@ -404,7 +408,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable();
 
@@ -425,12 +429,12 @@
                 $('#email').val(data[4]);
                 $('#year').val(data[6]);
                 $('#course').val(data[5]);
-                $('#editForm').attr('action', '/user/' + data[0]);
+                $('#editForm').attr('action', '/user-update/' + data[0]);
                 $('#editModal').modal('show');
 
             });
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

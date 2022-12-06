@@ -26,7 +26,8 @@ class UserController extends Controller
         }
 
         $roles = Role::all();
-        $users = User::with(['role'])->get();
+        $users = User::with(['role', 'course'])->get();
+        // dd($users);
         $courses = Course::all();
         $numusers = User::count();
         return view('admin.users.index', compact('users', 'numusers', 'courses', 'roles'));
@@ -92,52 +93,46 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if(Auth::user()->id == $id){
-            return redirect()->route('admin.users.index')->with('warning', 'You are not allowed to edit yourself.');
-        }
 
-        return view('admin.users.edit')->with(['user'=>User::find($id)]);
+    public function editAccount($id)
+    {
+        $user = User::where('id', $id)->with(['role', 'course'])->first();
+
+        $roles = Role::all();
+        // dd($user);
+        $courses = Course::all();
+        return view('admin.users.edit', compact('courses', 'roles', 'user'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function updateAccount($id, Request $request)
     {
         $request->validate([
             'idnum'=>'required',
             'fname'=>'required',
-            'mname'=>'required',
             'lname'=>'required',
             'course_id'=>'required',
             'year'=>'required',
             'email'=>'required|email',
         ]);
+        // dd($request->all());
         $users = User::find($id);
 
         $users->idnum = $request->input('idnum');
         $users->fname = $request->input('fname');
-        $users->mname = $request->input('mname');
         $users->lname = $request->input('lname');
         $users->course_id = $request->input('course_id');
         $users->year = $request->input('year');
         $users->email = $request->input('email');
 
-        $users->save();
-
-        return redirect('/user')->with('success','Profile Updated');
+        $users->update();
+        $roles = Role::all();
+        $users = User::with(['role', 'course'])->get();
+        // dd($users);
+        $courses = Course::all();
+        $numusers = User::count();
+        return view('admin.users.index', compact('users', 'numusers', 'courses', 'roles'))->with('success','Account Updated');
     }
     /**
      * Remove the specified resource from storage.

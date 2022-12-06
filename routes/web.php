@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,14 +55,11 @@ Route::get('/department', function(){
     return view('admin.users.department');
 });
 
-Route::get('/dash', function(){
-    return view('admin.users.dash');
-});
+Route::get('/edit/{id}', 'Admin\UserController@edit');
 
 Route::post('/addcouncilor','Admin\UserController@makecounselour')->name('addcouncilor');
 Route::resource('course', CourseController::class);
 Route::resource('/department', DepartmentController::class);
-Route::resource('user', Admin\UserController::class);
 
 //end
 
@@ -74,6 +72,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/index', function(){
     return view('admin.users');
 }) ->middleware(['auth', 'auth.admin']);
+Route::put('/user-update/{id}', 'Admin\UserController@updateAccount');
+Route::get('/user-edit/{id}', 'Admin\UserController@editAccount');
+Route::delete('/user-delete/{id}', 'Admin\UserController@destroy');
 Route::namespace('Admin') ->prefix('admin')->middleware(['auth', 'auth.admin']) ->name('admin.')->group(function(){
 Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
@@ -85,7 +86,7 @@ Route::put('/manageappointments-update/{id}', 'Councilour\Appointmentlist@adminu
 Route::get('/updatequestion/{id}', 'Admin\QuestionController@edit')->name('updatequestion');
 Route::put('/updatequestion-edit/{id}', 'Admin\QuestionController@update')->name('updatequestion-edit');
 Route::post('/add-department', 'DepartmentController@create')->name('add-department');
-Route::delete('/user-delete/{id}', 'Admin\UserController@destroy');
+Route::resource('/user', Admin\UserController::class);
 Auth::routes();
 
 //Counselour//
@@ -110,7 +111,6 @@ Route::post('/personality_exam', 'Councilour\QuestionController@pstore')->name('
 Route::get('/exams_history', 'Councilour\QuestionController@showexam')->name('exams_history');
 Route::get('/learner_exam', 'Councilour\QuestionController@learner')->name('learner_exam');
 Route::post('/learner_exam', 'Councilour\QuestionController@lstore')->name('learner_exam');
-Route::get('/admin/users/student/questionaire', 'StudentquestionaireController@index')->name('questionaire');
 Route::delete('/appointment-delete/{id}', 'Councilour\Appointmentlist@destroy');
 Route::delete('/completed-delete/{id}', 'Councilour\Appointmentlist@destroycompleted');
 Route::delete('/delete-history/{id}', 'Councilour\QuestionController@destroyhistory');

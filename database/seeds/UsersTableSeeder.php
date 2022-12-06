@@ -55,8 +55,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt ('student')
         ]);
 
-        $admin -> roles() -> attach($adminRole);
-        $counselor->roles()->attach($counselorRole);
-        $student->roles()->attach($studentRole);
+        $admin->role()->attach($adminRole);
+        $counselor->role()->attach($counselorRole);
+        $student->role()->attach($studentRole);
     }
 }

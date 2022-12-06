@@ -71,7 +71,7 @@
                 </ul>
             </header>
             @include('partials.alerts')
-            <br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br>
             <div class="container">
                 <div class="row justify-content-center">
                         <div class="course-body float-start">
@@ -178,7 +178,7 @@
                                                 <label class="input-group-text"
                                                     for="year">{{ __('Year') }}</label>
                                                 <select class="form-select" id="year" name="year">
-                                                    <option value="-" {{$user->year == '-' ? 'selected': ''}}>-</option>
+                                                    <option value="Non-Student" {{$user->year == 'Non-Student' ? 'selected': ''}}>Non-Student</option>
                                                     <option value="1st Year"{{$user->year == '1st Year' ? 'selected': ''}}>1st Year</option>
                                                     <option value="2nd Year"{{$user->year == '2nd Year' ? 'selected': ''}}>2nd Year</option>
                                                     <option value="3rd Year"{{$user->year == '3rd Year' ? 'selected': ''}}>3rd Year</option>
@@ -220,13 +220,9 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="AddcounselorModalLabel">Add Counselor</h5>
                             </div>
-                            <br><br><br><br>
                             <div class="modal-body">
                                 <form method="POST" id="addaccount" action="{{ route('addcouncilor') }}">
                                     @csrf
-                                    <div class="row">
-                                        <div class="col-4 col-sm-6">
-                                        </div>
                                         <div class="row">
                                             <div class="col-8 col-sm-6">
                                                 <div class="input-group mb-3">
@@ -246,7 +242,7 @@
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <input type="text" id="year" name="year"
-                                                        value="0" class="form-control" hidden>
+                                                        value="Non-Student" class="form-control" hidden>
                                                 </div>
                                             </div>
                                             <div class="col-4 col-sm-6">
@@ -279,8 +275,6 @@
                                                 class="form-control" hidden>
                                             </div>
                                         </div>
-
-                                    </div>
                                     <div class="modal-footer"><button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary" form="addaccount">Submit
@@ -305,7 +299,6 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="AddstudentModalLabel">Add Student</h5>
                         </div>
-                        <br><br><br><br>
                         <div class="modal-body">
                             <form method="PUT" id="addstudent" action="{{ route('user.create') }}">
                                 @csrf

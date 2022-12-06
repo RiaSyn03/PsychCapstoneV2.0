@@ -88,8 +88,6 @@ class UserController extends Controller
                 'password'=>bcrypt($request->password)
 
             ]);
-        $role = Role::select('id')->where('role_name', 'counselor')->first();
-        $user->roles()->attach($role);
         return redirect()->route('admin.users.index')->with('success','Counselor Added');
 
     }
@@ -137,7 +135,7 @@ class UserController extends Controller
         $users->year = $request->input('year');
         $users->email = $request->input('email');
 
-        $users->update();
+        $users->save();
 
         return redirect('/user')->with('success','Profile Updated');
     }

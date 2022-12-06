@@ -90,7 +90,6 @@ Auth::routes();
 
 //Counselour//
 Route::get('/viewtime', 'Councilour\Appointmentlist@index')->name('viewtime');
-// Route::post('/viewtime-accept/{id}', 'Councilour\Appointmentlist@update')->name('viewtime-accept');
 Route::get('/change-status/{id}', 'Councilour\Appointmentlist@updatetime')->name('changestatus');
 Route::get('/change-done/{id}', 'Councilour\Appointmentlist@done')->name('changedone');
 Route::get('/viewquestions', 'Councilour\QuestionController@index')->name('viewquestions');

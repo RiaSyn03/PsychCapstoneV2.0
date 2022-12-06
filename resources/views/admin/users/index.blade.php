@@ -172,12 +172,13 @@
                                                 <label class="input-group-text"
                                                     for="year">{{ __('Year') }}</label>
                                                 <select class="form-select" id="year" name="year">
-                                                    <option value="-">-</option>
+                                                    <option value="-">-</option>                                                   
                                                     <option value="1st Year">1st Year</option>
                                                     <option value="2nd Year">2nd Year</option>
                                                     <option value="3rd Year">3rd Year</option>
                                                     <option value="4th Year">4th Year</option>
                                                     <option value="5th Year">5th Year</option>
+                                                    <option value="Non-Student">Non-Student</option>
                                                 </select>
                                             </div>
                                         </div>

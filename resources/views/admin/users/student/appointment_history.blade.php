@@ -28,9 +28,9 @@
                 <li><a href="{{ url('exams_history') }}" >Exam History</a></li>
              <li><a href="{{ url('home') }}" >Home</a></li>
          </ul>
-     </header>        
+     </header>
      @include('partials.alerts')
-                <div class="card-body"> 
+                <div class="card-body">
                   <br><br><br><br>
                 <div class="tabbed">
     <input type="radio" name="tabs" id="tab-nav-1" checked>
@@ -98,10 +98,10 @@
 
         <div onclick="toggle()"><center>Close</center></div>
     </div>
-    
-    
+
+
     <script src="js/calendar.js"></script>
-</div>  
+</div>
 <div>
       <table class="table table-striped">
    <thead>
@@ -109,7 +109,7 @@
    <tr>
    <th colspan="5"><center><h2>Pending</h2></center></th>
 </tr>
-   <tr>  
+   <tr>
 <td><center>Date </center></td>
 <td><center>Time </center></td>
 <td><center>Status </center></td>
@@ -124,7 +124,7 @@
 <td><center><p>{{ date('d F, Y', strtotime($p->date)) }}</p></center></td>
 <td><center><p>{{ $p->time }}</p></center></td>
 <td><center><p>{{ $p->status }}</p></center></td>
-<td><center><button type="button" class="btn btn-danger del">Cancel</button></center></td> 
+<td><center><button type="button" class="btn btn-danger del">Cancel</button></center></td>
 </tr>
 @endforeach
 </table>
@@ -136,7 +136,7 @@
    <tr>
    <th colspan="5"><center><h2>All Appointments</h2></center></th>
 </tr>
-   <tr>  
+   <tr>
 <td><center>Date </center></td>
 <td><center>Time </center></td>
 <td><center>Status </center></td>
@@ -157,7 +157,7 @@
       <div>
       <table class="table table-striped">
 <thead>
-   
+
    <tr>
    <th colspan="5"><center><h2>Finished Appointments</h2></center></th>
 </tr>
@@ -192,7 +192,7 @@ $(document).ready(function(){
 var delete_id = $(this).closest("tr").find('.btn_val_id').val();
     const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
-    confirmButton: 'btn btn-success',
+    confirmButton: 'btn btn-success ml-3',
     cancelButton: 'btn btn-danger'
   },
   buttonsStyling: false
@@ -224,8 +224,8 @@ swalWithBootstrapButtons.fire({
     });
       }
     });
-    
-    
+
+
   } else if (
     /* Read more about handling dismissals below */
     result.dismiss === Swal.DismissReason.cancel
@@ -287,8 +287,8 @@ swalWithBootstrapButtons.fire({
     });
       }
     });
-    
-    
+
+
   } else if (
     /* Read more about handling dismissals below */
     result.dismiss === Swal.DismissReason.cancel

@@ -16,16 +16,16 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         if(Auth()->check() && (auth()->user()->role_id != 2)){
         Auth::logout();
         return redirect()->route('login')->with('message', 'Your account is restricted');
     }
-        $questions = Question::all(); 
+        $questions = Question::all();
         $stressquestions = Question::where('question_type','stress')->orderBy('question_num', 'asc')->get();
-        $personalityquestions = Question::where('question_type','personality')->orderBy('question_num', 'asc')->get(); 
-        $learnersquestions = Question::where('question_type','learners')->orderBy('question_num', 'asc')->get(); 
-        
+        $personalityquestions = Question::where('question_type','personality')->orderBy('question_num', 'asc')->get();
+        $learnersquestions = Question::where('question_type','learners')->orderBy('question_num', 'asc')->get();
+
         return view('admin.users.councilour.questions.viewquestions', compact('questions','stressquestions','personalityquestions','learnersquestions'));
     }
     public function questions()
@@ -34,11 +34,11 @@ class QuestionController extends Controller
             Auth::logout();
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
-        $questions = Question::all(); 
+        $questions = Question::all();
         $stressquestions = Question::where('question_type','stress')->orderBy('question_num', 'asc')->get();
-        $personalityquestions = Question::where('question_type','personality')->orderBy('question_num', 'asc')->get(); 
-        $learnersquestions = Question::where('question_type','learners')->orderBy('question_num', 'asc')->get(); 
-        
+        $personalityquestions = Question::where('question_type','personality')->orderBy('question_num', 'asc')->get();
+        $learnersquestions = Question::where('question_type','learners')->orderBy('question_num', 'asc')->get();
+
         return view('admin.users.questions', compact('questions','stressquestions','personalityquestions','learnersquestions'));
     }
 
@@ -60,7 +60,7 @@ class QuestionController extends Controller
         $question->question = $request->input('question');
         $question->question_type = $request->input('question_type');
         $question->save();
-        
+
         return redirect()->route('questions')->with('success','Question Added');
     }
 
@@ -71,12 +71,12 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
+    {
         //
     }
 
     public function sstore(Request $request)
-    {       
+    {
         $this->validate($request,[
             'result_name' => 'required',
           ]);
@@ -86,11 +86,11 @@ class QuestionController extends Controller
         $result->result_name = $request->input('result_name');
         $result->save();
 
-        return redirect()->route('stress_exam')->with('success','Added to Exam History');
+        return redirect()->route('home')->with('success','Added to Exam History');
     }
 
     public function pstore(Request $request)
-    {       
+    {
         $this->validate($request,[
             'result_name' => 'required',
           ]);
@@ -100,11 +100,11 @@ class QuestionController extends Controller
         $result->result_name = $request->input('result_name');
         $result->save();
 
-        return redirect()->route('personality_exam')->with('success','Added to Exam History');
+        return redirect()->route('home')->with('success','Added to Exam History');
     }
 
     public function lstore(Request $request)
-    {       
+    {
         $this->validate($request,[
             'result_name' => 'required',
           ]);
@@ -114,7 +114,7 @@ class QuestionController extends Controller
         $result->result_name = $request->input('result_name');
         $result->save();
 
-        return redirect()->route('learner_exam')->with('success','Added to Exam History');
+        return redirect()->route('home')->with('success','Added to Exam History');
     }
 
     /**
@@ -161,18 +161,18 @@ class QuestionController extends Controller
     {
        //
     }
-    
+
     public function personality(Request $request)
     {
         if(Auth()->check() && (auth()->user()->role_id != 3)){
             Auth::logout();
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
-        $questioncount = Question::where('question_type','personality')->get()->count(); 
+        $questioncount = Question::where('question_type','personality')->get()->count();
         $personality = Question::where('question_type','personality')->orderBy('question_num', 'asc')->get();
         return view('admin.users.student.personality_exam', compact('personality', 'questioncount'));
 
-        
+
     }
     public function learner(Request $request)
     {
@@ -180,10 +180,10 @@ class QuestionController extends Controller
             Auth::logout();
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
-        $questioncount = Question::where('question_type','learners')->get()->count(); 
+        $questioncount = Question::where('question_type','learners')->get()->count();
         $learner = Question::where('question_type','learners')->orderBy('question_num', 'asc')->get();
         return view('admin.users.student.learner_exam', compact('learner', 'questioncount'));
-     
+
     }
 
     public function stress(Request $request)
@@ -192,8 +192,8 @@ class QuestionController extends Controller
             Auth::logout();
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
-        $questioncount = Question::where('question_type','stress')->get()->count(); 
-        $stress = Question::where('question_type','stress')->orderBy('question_num', 'asc')->get();       
+        $questioncount = Question::where('question_type','stress')->get()->count();
+        $stress = Question::where('question_type','stress')->orderBy('question_num', 'asc')->get();
         return view('admin.users.student.stress_exam', compact('stress', 'questioncount'));
 
     }
@@ -205,13 +205,13 @@ class QuestionController extends Controller
         }
         $id = auth()->user()->id;
         $myexams = Result::where('user_id',$id)->orderBy('created_at', 'asc')->get();
-        
+
         return view('admin.users.student.exams_history', compact('myexams'));
     }
     public function destroyhistory($id)
     {
         $delete_history = Result::findorFail($id);
-        $delete_history->delete();  
+        $delete_history->delete();
         return response()->json(['status' => 'Delete Successful !']);
     }
 }

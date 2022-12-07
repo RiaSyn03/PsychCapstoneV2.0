@@ -28,11 +28,11 @@
              <li><a href="{{ url('home') }}">Home</a></li>
          </ul>
      </header>
-     <div class="align-examscard"> 
-     <div class="examscard">          
-                <div class="card-body"> 
+     <div class="align-examscard">
+     <div class="examscard">
+                <div class="card-body">
                 <table class="table table-striped">
-               
+
    <thead>
    <div class="panel-body">
    <tr>
@@ -40,7 +40,7 @@
 </tr>
    <tr>
 <td><center>Exam Result </center></td>
-<td><center>Date & Time</center></td>
+<td><center>Date</center></td>
 <td><center>Action </center></td>
 </tr>
   </thead>
@@ -52,7 +52,7 @@
 <td><center><p>{{ date('d F, Y', strtotime($examhistory->created_at)) }} <p></center></td>
 <td><center>
   <button type="button" class="btn btn-danger btn-sm del"><i class="fa fa-trash-o"></i></button>
-</center></td> 
+</center></td>
 </tr>
   @endforeach
   </tbody>
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        
+
 </div>
 <!-- DELETE EXAM HISTORY-->
 <script>
@@ -110,8 +110,8 @@ swalWithBootstrapButtons.fire({
     });
       }
     });
-    
-    
+
+
   } else if (
     /* Read more about handling dismissals below */
     result.dismiss === Swal.DismissReason.cancel

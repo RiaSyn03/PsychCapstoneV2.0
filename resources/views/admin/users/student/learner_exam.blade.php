@@ -8,7 +8,7 @@
          <li><a href="{{ url('home') }}">Go to Homepage</a></li>
          <li><a href="{{ url('learner_exam') }}" class="active">Learner</a></li>
          <li><a href="{{ url('personality_exam') }}" >Personality</a></li>
-             <li><a href="{{ url('stress_exam') }}" >Stress Scale</a></li> 
+             <li><a href="{{ url('stress_exam') }}" >Stress Scale</a></li>
          </ul>
      </header>
      @include('partials.alerts')
@@ -39,7 +39,7 @@
     <br><br><br>
 @endforeach
 <!-- <p>Total: £ <span id="total">0</span></p> -->
-<input type="hidden" id="result_name" name="result_name" value=""/> 
+<input type="hidden" id="result_name" name="result_name" value=""/>
 <br><br><br>    <br><br><br>
 <center>
 <br><br>
@@ -47,7 +47,7 @@
 
 </center>
 
-<!-- 
+<!--
 <p>The Result is : <br>
 	<span id = "result"></span>
 </p> -->
@@ -57,7 +57,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="submit" class="back-categorybtn">Go to Categories</button></a>
                 <br><br><br>
-                    <button type="submit" class="back-facebtn">Save to Exam History</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="button" class="back-categorybtn">Go to Categories</button></a>
                     <br><br><br>
-                    <button type="submit" class="back-facebtn">Save to Exam History</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="button" class="back-categorybtn">Go to Categories</button></a>
                     <br><br><br>
-                    <button type="submit" class="back-facebtn">Save to Exam History</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                 </div>
             </div>
         </div>
@@ -116,13 +116,13 @@
 
           });
           $("#total").text(total);
-    
-    
+
+
     var linguistic = maxscore*0.25;
     var kinesthetic = maxscore*0.50;
     var visual = maxscore*0.75;
     $("#result").text(maxscore);
-    
+
     if(total <= linguistic )
     {
       // var blur = document.getElementById('blur');
@@ -145,7 +145,7 @@
       // blur.classList.toggle('active');
       var superstressmodal = document.getElementById('super-stressmodal');
       superstressmodal.classList.toggle('active');
-   
+
       $("#result_name").val("You are a visual learner");
     }
   else {
@@ -177,5 +177,5 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-  
+
 @endsection

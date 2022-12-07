@@ -20,13 +20,12 @@ class Appointmentlist extends Controller
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
 
-        $id = Auth()->user()->fname;
        $timescheds = Timeslot::where('status','pending')->orderBy('date', 'asc')->get();
        $id = Auth()->user()->fname;
        $acceptedlist = Timeslot::where('counselor_name',$id)->where('status','accepted')->orderBy('date', 'asc')->get();
        $reschedule = Timeslot::where('counselor_name',$id)->where('status','Re-Schedule')->orderBy('date', 'asc')->get();
        $donelist = Timeslot::where('status','done')->where('counselor_name',$id)->orderBy('date', 'asc')->get();
-       
+
         return view('admin.users.councilour.viewtime',compact('timescheds','donelist','acceptedlist','reschedule'));
     }
 
@@ -128,7 +127,7 @@ class Appointmentlist extends Controller
     public function destroy($id)
     {
         $appointment_delete = Timeslot::findorFail($id);
-        $appointment_delete->delete();  
+        $appointment_delete->delete();
         return response()->json(['status' => 'Delete Successful !']);
     }
     public function destroycompleted($id)
@@ -183,7 +182,7 @@ class Appointmentlist extends Controller
 
         //SMTP Settings
         $mail->isSMTP();
-        // $mail->SMTPDebug = 3;  Keep It commented this is used for debugging                          
+        // $mail->SMTPDebug = 3;  Keep It commented this is used for debugging
         $mail->Host = "smtp.gmail.com"; // smtp address of your email
         $mail->SMTPAuth = true;
         $mail->Username = $from;
@@ -206,12 +205,12 @@ class Appointmentlist extends Controller
         $mail->Body = $body;
 
         $status = Timeslot::select('status')->where('id',$id)->first();
-        
+
         $status= 'Re-Schedule';
         $counsel_name= Auth()->user()->fname;
         Timeslot::where('id',$id)->update(['status'=>$status]);
         Timeslot::where('id',$id)->update(['counselor_name'=>$counsel_name]);
-        
+
 
         if ($mail->send()) {
             return redirect()->route('viewtime')->with('success', 'Email Sent ! Please check your reschedule list');
@@ -228,15 +227,15 @@ class Appointmentlist extends Controller
         public function getreschedid(Request $request, $id)
         {
             $getid = Timeslot::findOrFail($id);
-    
+
             return view('admin.users.councilour.updateschedule')->with('getid',$getid);
         }
 
         public function updateresched(Request $request, $id)
         {
-           
+
             $timeslots = Timeslot::find($id);
-    
+
             $timeslots->time = $request->input('time');
             $timeslots->status = $request->input('status');
             $timeslots->date = $request->input('date');
@@ -245,14 +244,15 @@ class Appointmentlist extends Controller
         }
 
         public function adminappointments()
-    {   
+    {
         if(Auth()->check() && (auth()->user()->role_id != 1)){
         Auth::logout();
         return redirect()->route('login')->with('message', 'Your account is restricted');
     }
-        
-       $timescheds = Timeslot::all();
-        return view('admin.users.manageappointments',compact('timescheds'));
+    $timescheds = Timeslot::where('status','Re-Schedule')->orderBy('date', 'asc')->get();
+    $alltime = TImeslot::all();
+
+        return view('admin.users.manageappointments',compact('timescheds','alltime'));
     }
 
     public function adminupdate(Request $request, $id)
@@ -260,7 +260,7 @@ class Appointmentlist extends Controller
         $request->validate([
             'counselor_name'=>'required',
             'status'=>'required',
-            
+
         ]);
         $timeslots = Timeslot::find($id);
 
@@ -275,10 +275,10 @@ class Appointmentlist extends Controller
     public function reschedstatus($id)
     {
         $getid = Timeslot::findOrFail($id);
-    
+
         return view('admin.users.councilour.reschedule')->with('getid',$getid);
     }
 }
 
 
-    
+

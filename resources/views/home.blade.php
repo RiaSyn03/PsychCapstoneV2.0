@@ -103,6 +103,7 @@
              <li><a href="{{ url('home') }}" class="active">Home</a></li>
          </ul>
      </header>
+     @include('partials.alerts')
      <div class="student-align">
      <div class="studentcontainer">
         <div class="menu">

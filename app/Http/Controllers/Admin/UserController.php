@@ -117,22 +117,25 @@ class UserController extends Controller
             'email'=>'required|email',
         ]);
         // dd($request->all());
-        $users = User::find($id);
+        $user = User::find($id);
 
-        $users->idnum = $request->input('idnum');
-        $users->fname = $request->input('fname');
-        $users->lname = $request->input('lname');
-        $users->course_id = $request->input('course_id');
-        $users->year = $request->input('year');
-        $users->email = $request->input('email');
+        $user->idnum = $request->input('idnum');
+        $user->fname = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->course_id = $request->input('course_id');
+        $user->year = $request->input('year');
+        $user->email = $request->input('email');
 
-        $users->update();
-        $roles = Role::all();
-        $users = User::with(['role', 'course'])->get();
-        // dd($users);
-        $courses = Course::all();
-        $numusers = User::count();
-        return view('admin.users.index', compact('users', 'numusers', 'courses', 'roles'))->with('success','Account Updated');
+        $user->update();
+
+        return redirect('/user')->with('success','Account Updated');
+
+        // $roles = Role::all();
+        // $users = User::with(['role', 'course'])->get();
+        // // dd($users);
+        // $courses = Course::all();
+        // $numusers = User::count();
+        // return view('admin.users.index', compact('users', 'numusers', 'courses', 'roles'))->with('success','Account Updated');
     }
     /**
      * Remove the specified resource from storage.

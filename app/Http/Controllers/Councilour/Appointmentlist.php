@@ -20,11 +20,11 @@ class Appointmentlist extends Controller
             return redirect()->route('login')->with('message', 'Your account is restricted');
         }
 
-       $timescheds = Timeslot::where('status','pending')->orderBy('date', 'asc')->get();
+       $timescheds = Timeslot::where('status','Pending')->latest('updated_at')->get();
        $id = Auth()->user()->fname;
-       $acceptedlist = Timeslot::where('counselor_name',$id)->where('status','accepted')->orderBy('date', 'asc')->get();
-       $reschedule = Timeslot::where('counselor_name',$id)->where('status','Re-Schedule')->orderBy('date', 'asc')->get();
-       $donelist = Timeslot::where('status','done')->where('counselor_name',$id)->orderBy('date', 'asc')->get();
+       $acceptedlist = Timeslot::where('counselor_name',$id)->where('status','Accepted')->latest('updated_at')->get();
+       $reschedule = Timeslot::where('counselor_name',$id)->where('status','Re-Schedule')->latest('updated_at')->get();
+       $donelist = Timeslot::where('status','done')->where('counselor_name',$id)->latest('updated_at')->get();
 
         return view('admin.users.councilour.viewtime',compact('timescheds','donelist','acceptedlist','reschedule'));
     }

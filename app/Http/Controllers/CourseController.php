@@ -26,9 +26,9 @@ class CourseController extends Controller
         // ->select('courses.*', 'departments.dept_name')
         // ->get();
 
-        $courses = Course::with(['department'])->get();
-        $depts = Department::all();
-        return view('admin.users.course', compact('courses', 'depts'));
+        // $courses = Course::with(['department'])->first();
+        $department = Department::with(['courses'])->get();
+        return view('admin.users.course', compact('department'));
     }
 
     /**
@@ -48,7 +48,7 @@ class CourseController extends Controller
             'dept_id' => $request->dept_id
         ]);
 
-        return redirect()->route('course.index')->with('message', 'Course has been saved!');
+        return redirect()->route('department.index')->with('message', 'Course has been saved!');
     }
 
     /**
@@ -97,7 +97,7 @@ class CourseController extends Controller
             'course_name'=>'required',
             'dept_id'=>'required',
         ]);
-        
+
         $courses = Course::find($id);
 
         $courses->course_name = $request->input('course_name');
@@ -117,10 +117,11 @@ class CourseController extends Controller
     public function destroy(Course $courses, $id)
     {
         $courses = Course::find($id);
+        $courses->department()->detach();
         $courses->delete();
 
         return redirect()->route('course.index')->with('message', 'This course has been deleted.');
     }
 
-    
+
 }

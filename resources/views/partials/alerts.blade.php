@@ -1,7 +1,13 @@
 @if(session('success'))
-<div class="alert alert-success" role="alert" id="alert"><button type="button" class="close" data-dismiss="alert">x</button>
-  {{ session('success') }}
-</div>
+  <script>
+Swal.fire({
+  position: 'top-mid',
+  icon: 'success',
+  title: 'Your work has been saved',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
 @endif
 
 @if(session('warning'))
@@ -18,14 +24,16 @@
 <div class="alert alert-success alert-dismissable" role="alert">
 @endif
 
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 {{session ('message') }}
 </div>
 </div>
 @endif
+<<<<<<< HEAD
+=======
 
 <script type="text/javascript">
-  $("document").ready(function()
+  $(document).ready(function()
   {
     setTimeout(function()
     {
@@ -33,3 +41,4 @@
     },3000);
   });
   </script>
+>>>>>>> 33b7eb8c8db5e89cd5c449eb468993a959b8b6da

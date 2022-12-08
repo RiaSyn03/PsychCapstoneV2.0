@@ -28,9 +28,8 @@
                 <li><a href="{{ url('exams_history') }}" >Exam History</a></li>
              <li><a href="{{ url('home') }}" >Home</a></li>
          </ul>
-     </header>
-     @include('partials.alerts')
-                <div class="card-body">
+     </header>        
+                <div class="card-body"> 
                   <br><br><br><br>
                 <div class="tabbed">
     <input type="radio" name="tabs" id="tab-nav-1" checked>
@@ -68,13 +67,13 @@
                 <div>Fri</div>
                 <div>Sat</div>
             </div>
-            <div class="calendar-days" id ="hide"></div>
+            <div class="calendar-days" ></div>
         </div>
         <div class="month-list"></div>
         </div>
     <div id="popup">
         <h2><div><center>Description</center></div></h2>
-        <div id="appointmentDate"></div>
+        <div id="appointmentDate" min="12/8/2022"></div>
        <br>
         <h3><div><center>Want to make an Appointment ?</center></div></h3>
         <form method="post" action="appointment_history">
@@ -93,7 +92,7 @@
     </select>
    <input type="text" id="status" name="status" value="pending" class="form-control" hidden>
    <input type="text" id="counselor_name" name="counselor_name" value="Not yet accepted" class="form-control" hidden>
-  <button type="submit">Submit</button>
+  <button type="submit" class="confirm">Submit</button>
 </form>
 
         <div onclick="toggle()"><center>Close</center></div>
@@ -190,13 +189,14 @@ $(document).ready(function(){
   $('.del').click(function (e){
     e.preventDefault();
 var delete_id = $(this).closest("tr").find('.btn_val_id').val();
-    const swalWithBootstrapButtons = Swal.mixin({
+const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-success ml-3',
     cancelButton: 'btn btn-danger'
   },
   buttonsStyling: false
 })
+
 swalWithBootstrapButtons.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -216,23 +216,29 @@ swalWithBootstrapButtons.fire({
       url: '/appointment-delete/'+delete_id,
       data: data,
       success: function (response) {
-        swalWithBootstrapButtons.fire(
-          response.status,
+      swalWithBootstrapButtons.fire(
+      'Deleted!',
+      'Your schedule has been deleted.',
+      'success'
     )
     .then((result) => {
       location.reload();
     });
       }
     });
+<<<<<<< HEAD
+    
+=======
 
 
+>>>>>>> 33b7eb8c8db5e89cd5c449eb468993a959b8b6da
   } else if (
     /* Read more about handling dismissals below */
     result.dismiss === Swal.DismissReason.cancel
   ) {
     swalWithBootstrapButtons.fire(
       'Cancelled',
-      'Your imaginary file is safe :)',
+      'Your schedule is safe',
       'error'
     )
   }
@@ -305,4 +311,21 @@ swalWithBootstrapButtons.fire({
 </script>
 
 <!-- END FOR COMPLETED -->
+<<<<<<< HEAD
+
+<!-- ALERT FOR SUBMIT -->
+<!-- <script>
+Swal.fire({
+  position: 'top-mid',
+  icon: 'success',
+  title: 'Your work has been saved',
+  showConfirmButton: false,
+  timer: 1500
+});
+
+</script> -->
+
 @endsection
+=======
+@endsection
+>>>>>>> 33b7eb8c8db5e89cd5c449eb468993a959b8b6da

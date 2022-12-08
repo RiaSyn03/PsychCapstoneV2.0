@@ -2,6 +2,7 @@
 
 @section('content')
 <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 <section>
      <header>
      <div class="logo"><img src="{{ asset('img/logo.gif') }}"></div>
@@ -25,14 +26,13 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ url('course') }}">Manage Course</a></li>
+                    <li><a href="{{ url('department') }}">Manage Department</a></li>
                     <li><a href="{{ url('manageappointments') }}" class="active">Manage Appointments</a></li>
                     <li><a href="{{ url('questions') }}">Manage Questions</a></li>
                     <li><a href="{{ url('user') }}">Manage Account</a></li>
                     <li><a href="{{ route('home') }} ">Dashboard</a></li>
                 </ul>
      </header>
-     @include('partials.alerts')
 <br><br><br><br><br><br><br><br>
 <div class="container">
                     <div class="row justify-content-center">
@@ -127,7 +127,13 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#datatable').DataTable();
+            var table = $('#datatable').DataTable({
+            language: {
+               
+                searchPlaceholder: "search here",
+                 searchColor: "white",
+            }
+            });
 
             table.on('click', '.edit', function() {
 

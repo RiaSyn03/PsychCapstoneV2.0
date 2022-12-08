@@ -3,12 +3,11 @@
 <link href="{{ asset('css/wellness.css') }}" rel="stylesheet">
 <section>
      <header>
-         <a href="#" class="logo">Logo</a>
+	 <div class="logo"><img src="{{ asset('img/logo.gif') }}"></div>
          <ul>
              <li><a href="{{ url('home') }}">Home</a></li>
              <li><a href="{{ url('exams_history') }}">Exam History</a></li>
-             <li><a href="{{ url('stdntappointment') }}">Appointment</a></li>
-             <li><a href="{{ url('appointment_history') }}">My Appointments</a></li>
+             <li><a href="{{ url('appointment_history') }}">Appointments</a></li>
          </ul>
      </header>
      <div class="content">

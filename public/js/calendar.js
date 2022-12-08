@@ -41,18 +41,12 @@ generateCalendar = (month, year) => {
                 day.classList.add('curr-date')
             }
         }
+
         calendar_days.appendChild(day)
+        
     }
 
-    // if(currDate < 10){
-    //   currDate = '0' + currDate;
-    // }
-    // if( curr_month < 10){
-    //   curr_month = '0' + curr_month;
-    // }
-    // var minDate = currDate;
     
-    // document.getElementById("hide").setAttribute('min', minDate)
 }
 
 
@@ -82,6 +76,12 @@ let currDate = new Date()
 let curr_month = {value: currDate.getMonth()}
 let curr_year = {value: currDate.getFullYear()}
 
+let thisD = currDate.getDate()
+let thisM = currDate.getMonth() + 1
+let thisY = currDate.getUTCFullYear()
+
+
+
 
 generateCalendar(curr_month.value, curr_year.value)
 
@@ -97,10 +97,29 @@ document.querySelector('#next-year').onclick = () => {
 
 function toggle(idd){
     if(idd != null){
+    
+
         var s = idd
-        var tr = curr_month.value + 1
-        var appointmentdate = document.getElementById("appointmentDate").innerHTML =  tr + "/" + s + "/" + curr_year.value ;
+        var m = curr_month.value + 1
+        
+
+        if (thisM < 10) {
+          thisM = '0' + thisM;
+        }
+        if (thisD < 10) {
+          thisD = thisD;
+   
+        }
+        var minDate =  thisY + "-" + thisM + "-" + thisD ;
+        console.log(s)
+        // if (s < thisD){
+        //   var appointmentdate = document.getElementById("appointmentDate").innerHTML =  "Sorry" ;
+        // }    
+        var appointmentdate = document.getElementById("appointmentDate").innerHTML =  m + "/" + s + "/" + curr_year.value ;
+        
+        // document.getElementById("hide").setAttribute("min", minDate)
         document.getElementById('appointdate').value = appointmentdate;
+
     }
     
     var blur = document.getElementById('blur');

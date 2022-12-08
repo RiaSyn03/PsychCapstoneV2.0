@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ url('course') }}">Manage Course</a></li>
+                    <li><a href="{{ url('department') }}" class="active">Manage Department</a></li>
                     <li><a href="{{ url('manageappointments') }}" class="active">Manage Appointments</a></li>
                     <li><a href="{{ url('questions') }}">Manage Questions</a></li>
                     <li><a href="{{ url('user') }}">Manage Account</a></li>

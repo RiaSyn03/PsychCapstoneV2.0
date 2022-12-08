@@ -97,11 +97,11 @@
                                         </div>
                                     </thead>
                                     <tbody id="dynamic-row">
-                                        @foreach ($courses as $course)
+                                        @foreach ($department->courses as $course)
                                             <tr>
                                                 <td>{{ $course->id }}</td>
                                                 <td>{{ $course->course_name }}</td>
-                                                <td>{{ $course->department->dept_name }}</td>
+                                                <td>{{ $course }}</td>
                                                 <td>
                                                         <button class="btn btn-primary btn-sm edit">
                                                             <i class="fa fa-edit"></i>
@@ -111,7 +111,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                                         <label class="input-group-text" for="dept_id">Department</label>
                                         <select class="form-select" id="dept_id" name="dept_id">
                                             <option>Choose Department</option>
-                                            @foreach ($depts as $dept)
+                                            @foreach ($department as $dept)
                                                 <option value="{{ $dept->id }}">{{ $dept->dept_name }}</option>
                                             @endforeach
                                         </select>
@@ -183,12 +183,12 @@
                                         Department</button>
                                 </div>
                             </form>
-                            </div> 
-                            </div> 
-                            </div> 
-                            </div> 
-                           
-                            
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+
                             <!-- END DEPARTMENT MODAL -->
 
                             <!-- EDIT MODAL -->
@@ -197,7 +197,7 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="EditModalLabel">Add Course</h5>
+                            <h5 class="modal-title" id="EditModalLabel">Edit Course</h5>
                         </div>
                         <div class="modal-body">
                             <form method="POST" id="editForm" action="/course">
@@ -213,7 +213,7 @@
                                         <label class="input-group-text" for="dept_id">Department</label>
                                         <select class="form-select" id="defaultdept" name="dept_id">
                                             <option>Choose Department</option>
-                                            @foreach ($depts as $dept)
+                                            @foreach ($departments as $dept)
                                                 <option value="{{ $dept->id }}">{{ $dept->dept_name }}</option>
                                             @endforeach
                                         </select>
@@ -256,7 +256,7 @@
             var table = $('#datatable').DataTable();
 
             table.on('click', '.edit', function() {
-                
+
                 $tr = $(this).closest('tr');
                 if ($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');

@@ -130,12 +130,6 @@ class UserController extends Controller
 
         return redirect('/user')->with('success','Account Updated');
 
-        // $roles = Role::all();
-        // $users = User::with(['role', 'course'])->get();
-        // // dd($users);
-        // $courses = Course::all();
-        // $numusers = User::count();
-        // return view('admin.users.index', compact('users', 'numusers', 'courses', 'roles'))->with('success','Account Updated');
     }
     /**
      * Remove the specified resource from storage.

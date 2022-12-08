@@ -24,15 +24,15 @@
                         </div>
                       </div>
                 </li>
-                <li><a href="{{ url('course') }}">Manage Course</a></li>
+                <li><a href="{{ url('department') }}" class="active">Manage Department</a></li>
                 <li><a href="{{ url('manageappointments') }}">Manage Appointments</a></li>
                 <li><a href="{{ url('questions') }}" class="active">Manage Questions</a></li>
                 <li><a href="{{ url('user') }}" >Manage Account</a></li>
                 <li><a href="{{ route('home') }} "  >Dashboard</a></li>
                     </ul>
      </header>
-     @include('partials.alerts')     
-                <div class="card-body"> 
+     @include('partials.alerts')
+                <div class="card-body">
                 <br><br><br><br>
                 <div class="tabbed">
     <input type="radio" name="tabs" id="tab-nav-1" checked>
@@ -67,7 +67,7 @@
 <td><center><p>{{ $stress->question_type }}<p></center></td>
 <td>
 </form>
-<a href="/updatequestion/{{$stress->id}}"  class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>     
+<a href="/updatequestion/{{$stress->id}}"  class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>
   </td>
 </tr>
 @endforeach
@@ -95,7 +95,7 @@
 <td><center><p>{{ $personality->question_type }}</p></center></td>
 <td>
 </form>
-<a href="/updatequestion/{{$personality->id}}" class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>  
+<a href="/updatequestion/{{$personality->id}}" class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>
   </td>
 </tr>
 @endforeach
@@ -124,7 +124,7 @@
 <td><center><p>{{ $learner->question_type }}</p></center></td>
 <td>
 </form>
-<a href="/updatequestion/{{$learner->id}}" class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>     
+<a href="/updatequestion/{{$learner->id}}" class="btn btn-success btn-sm "><i class="fa fa-edit"></i></a>
   </td>
 </tr>
 @endforeach

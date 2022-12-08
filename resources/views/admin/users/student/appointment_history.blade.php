@@ -28,14 +28,8 @@
                 <li><a href="{{ url('exams_history') }}" >Exam History</a></li>
              <li><a href="{{ url('home') }}" >Home</a></li>
          </ul>
-<<<<<<< HEAD
      </header>        
                 <div class="card-body"> 
-=======
-     </header>
-     @include('partials.alerts')
-                <div class="card-body">
->>>>>>> 33b7eb8c8db5e89cd5c449eb468993a959b8b6da
                   <br><br><br><br>
                 <div class="tabbed">
     <input type="radio" name="tabs" id="tab-nav-1" checked>

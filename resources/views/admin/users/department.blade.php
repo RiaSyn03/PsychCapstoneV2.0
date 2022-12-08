@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -65,10 +66,10 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="{{ url('department') }}">Manage Department</a></li>
+                        <li><a href="{{ url('department') }}"class="active">Manage Department</a></li>
                         <li><a href="{{ url('manageappointments') }}">Manage Appointments</a></li>
                         <li><a href="{{ url('questions') }}">Manage Questions</a></li>
-                        <li><a href="{{ url('user') }}" class="active">Manage Account</a></li>
+                        <li><a href="{{ url('user') }}" >Manage Account</a></li>
                         <li><a href="{{ route('home') }} ">Dashboard</a></li>
                     </ul>
                 </header>
@@ -76,7 +77,6 @@
                 <br><br><br><br><br><br><br><br><br>
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="formcard">
                             <div class="course-body">
                                 <button class="addcourseBx " type="button" data-bs-toggle="modal"
                                     data-bs-target="#addcourseModal">
@@ -86,7 +86,7 @@
                                     data-bs-target="#adddepartmentModal">
                                     Add Department
                                 </button>
-                                <table id="datatable" class="table table-striped">
+                                <table id="departmenttable" class="table table-striped">
                                     <thead>
                                         <div class="panel-body">
                                             <tr>
@@ -258,7 +258,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#datatable').DataTable();
+            var table = $('#departmenttable').DataTable({
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "search here",
+                 searchColor: "white",
+            }
+            });
 
             table.on('click', '.edit', function() {
 

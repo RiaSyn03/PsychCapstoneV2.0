@@ -91,35 +91,27 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
         $request->validate([
             'course_name'=>'required',
-            'dept_id'=>'required',
         ]);
 
         $courses = Course::find($id);
 
         $courses->course_name = $request->input('course_name');
-        $courses->dept_id = $request->input('dept_id');
 
         $courses->update();
 
-        return redirect('/course')->with('success', 'Course Updated');
+        return redirect()->back()->with('success', 'Course Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Course $courses, $id)
+    public function destroy($id)
     {
         $courses = Course::find($id);
         $courses->delete();
 
-        return redirect()->route('course.index')->with('message', 'This course has been deleted.');
+        return redirect()->back()->with('message', 'This course has been deleted.');
     }
 
 

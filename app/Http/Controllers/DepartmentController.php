@@ -79,12 +79,12 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'dept_name'=>'required',
+            'department_name'=>'required',
         ]);
         // dd($request->all());
         $department = Department::find($id);
 
-        $department->dept_name = $request->input('dept_name');
+        $department->dept_name = $request->input('department_name');
 
         $department->update();
 

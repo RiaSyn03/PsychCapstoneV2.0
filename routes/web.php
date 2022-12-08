@@ -75,8 +75,10 @@ Route::get('/index', function(){
 Route::put('/user-update/{id}', 'Admin\UserController@updateAccount');
 Route::get('/user-edit/{id}', 'Admin\UserController@editAccount');
 Route::delete('/user-delete/{id}', 'Admin\UserController@destroy');
+Route::put('/course-update/{id}', 'CourseController@update');
+Route::delete('/course-delete/{id}', 'CourseController@destroy');
 Route::get('/department-show/{id}', 'DepartmentController@show');
-Route::get('/department-update/{id}', 'DepartmentController@update');
+Route::put('/department-update/{id}', 'DepartmentController@update');
 Route::namespace('Admin') ->prefix('admin')->middleware(['auth', 'auth.admin']) ->name('admin.')->group(function(){
 Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });

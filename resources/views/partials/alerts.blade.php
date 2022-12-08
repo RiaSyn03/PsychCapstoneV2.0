@@ -29,16 +29,3 @@ Swal.fire({
 </div>
 </div>
 @endif
-<<<<<<< HEAD
-=======
-
-<script type="text/javascript">
-  $(document).ready(function()
-  {
-    setTimeout(function()
-    {
-      $("div.alert").remove();
-    },3000);
-  });
-  </script>
->>>>>>> 33b7eb8c8db5e89cd5c449eb468993a959b8b6da

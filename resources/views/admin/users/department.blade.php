@@ -102,13 +102,10 @@
                                                 <td>{{ $department->id }}</td>
                                                 <td>{{ $department->dept_name }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-sm edit ml-2"><i
+                                                    <button type="button" data-id="" class="btn btn-primary btn-sm edit ml-2"><i
                                                         class="fa fa-edit"></i>
                                                     </button>
-                                                    <button action="/department-show/{{ $department->id }}"
-                                                        type="button" data-id="{{$department->id}}" class="btn btn-info btn-sm ml-1 editDepartment">
-                                                        <i class="fa fa-solid fa-eye"></i>
-                                                    </button>
+                                                    <a href="/department-show/{{ $department->id }}" class="btn btn-info btn-sm ml-1 editDepartment"><i class="fa fa-solid fa-eye"></i></a>
                                                     <form action="{{ route('department.destroy', $department->id) }}"
                                                         method="POST" class="float-left">
                                                         {{ method_field('DELETE') }}
@@ -169,20 +166,24 @@
                             <h5 class="modal-title" id="EditDepartmentModalLabel">Edit Department</h5>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" id="editForm" action="/department">
+                            @if($errors->any())
+                                {{ implode('', $errors->all('<div>:message</div>')) }}
+                            @endif
+                            <form method="POST" id="editForm" >
                                 @csrf
+                                {{ method_field('PUT') }}
                                 <div class="g-3 align-items-center">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Department Name</span>
-                                        <input type="text" id="id" name="id" value="{{$department->id}}" hidden>
-                                        <input type="text" id="dept_name" name="dept_name"
-                                            value="{{$department->dept_name}}" class="form-control" required>
+                                        <input type="text" id="edit_id" name="edit_id"  hidden>
+                                        <input type="text" id="department_name" name="department_name"
+                                             class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" id="saveBtn" form="editDept">Submit
+                                    <button type="submit" class="btn btn-primary" id="saveBtn">Submit
                                         Department</button>
                                 </div>
                             </form>
@@ -277,8 +278,8 @@
                 console.log(table.row($tr));
                 console.log(data);
 
-                $('#id').val(data[0]);
-                $('#dept_name').val(data[1]);
+                $('#edit_id').val(data[0]);
+                $('#department_name').val(data[1]);
                 $('#editForm').attr('action', '/department-update/' + data[0]);
                 $('#editDepartmentModal').modal('show');
 

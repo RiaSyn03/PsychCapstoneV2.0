@@ -94,21 +94,16 @@
                                                 <td>{{ $course->id }}</td>
                                                 <td>{{ $course->course_name }}</td>
                                                 <td>
-                                                    <button action="'{{ route('course.update', $course->id) }}"
-                                                        type="button" class="btn btn-info btn-sm ml-1 viewCourses"
-                                                        data-bs-toggle="modal" data-bs-target="#viewCourses">
-                                                        <i class="fa fa-solid fa-eye"></i>
-                                                    </button>
-                                                    <button class="btn btn-primary btn-sm edit">
+                                                    <button class="btn btn-primary btn-sm edit ml-2">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <form action="{{ route('department.destroy', $department->id) }}"
+                                                    <form action="/course-delete/{{$course->id}}"
                                                         method="POST" class="float-left">
                                                         {{ method_field('DELETE') }}
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Are you sure you want to delete {{ $department->dept_name }}?')"><i
+                                                            onclick="return confirm('Are you sure you want to delete {{ $course->course_name }}?')"><i
                                                                 class="fa fa-trash-o"></i></button>
                                                     </form>
                                                 </td>
@@ -129,23 +124,14 @@
                             <h5 class="modal-title" id="EditModalLabel">Edit Course</h5>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" id="editForm" action="/course">
+                            <form method="POST" id="editForm">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <div class="g-3 align-items-center">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Course Name</span>
-                                        <input type="text" id="course" name="course_name" class="form-control"
+                                        <input type="text" id="course_name" name="course_name" class="form-control"
                                             required>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="dept_id">Department</label>
-                                        <select class="form-select" id="defaultdept" name="dept_id">
-                                            <option>Choose Department</option>
-                                            @foreach ($department as $dept)
-                                                {{-- <option value="{{ $dept->id }}">{{ $dept->dept_name }}</option> --}}
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -197,9 +183,8 @@
                 console.log(table.row($tr));
                 console.log(data);
 
-                $('#course').val(data[1]);
-                $('#defaultdept').val(data[2]);
-                $('#editForm').attr('action', '/course/' + data[0]);
+                $('#course_name').val(data[1]);
+                $('#editForm').attr('action', '/course-update/' + data[0]);
                 $('#editModal').modal('show');
 
             });

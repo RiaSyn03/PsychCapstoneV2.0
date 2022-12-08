@@ -25,14 +25,14 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ url('course') }}">Manage Course</a></li>
+                    <li><a href="{{ url('department') }}" class="active">Manage Department</a></li>
                     <li><a href="{{ url('manageappointments') }}" class="active">Manage Appointments</a></li>
                     <li><a href="{{ url('questions') }}">Manage Questions</a></li>
                     <li><a href="{{ url('user') }}">Manage Account</a></li>
                     <li><a href="{{ route('home') }} ">Dashboard</a></li>
                 </ul>
-     </header>        
-     @include('partials.alerts')    
+     </header>
+     @include('partials.alerts')
 <br><br><br><br><br><br><br><br>
 <div class="container">
                     <div class="row justify-content-center">
@@ -44,7 +44,7 @@
    <tr>
    <th colspan="6"><center><h2>List of Appointments</h2></center></th>
 </tr>
-   <tr>  
+   <tr>
 <td hidden><center>ID</center></td>
 <td><center>Date </center></td>
 <td><center>Time </center></td>
@@ -54,8 +54,8 @@
 </tr>
   </thead>
   <tbody id="dynamic-row">
-    
-  @foreach($timescheds as $history)
+
+  @foreach($alltime as $history)
 <tr>
   @csrf
   <td hidden>{{ $history->id }}</td>
@@ -63,7 +63,14 @@
 <td>{{ $history->time }}</td>
 <td>{{ $history->status }}</td>
 <td>{{ $history->counselor_name }}</td>
-<td><center><button type="button" class="btn btn-primary edit">Change Counselor</button></center></td> 
+@if ($history->status == "Re-Schedule"||$history->status =="Accepted"){
+<td><center><button type="button" class="btn btn-primary edit">Change Counselor</button></center></td>
+}
+@else{
+    <td></td>
+}
+@endif
+
 </tr>
 <div class="modal fade">
 </div>
@@ -99,7 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
-                               
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>

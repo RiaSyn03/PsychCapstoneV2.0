@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Course;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -14,7 +15,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();;
+        $departments = Department::with(['courses'])->get();
+        // $degrees = Course::where('dept_id', $departments->id)->with(['department'])->first();
+
         return view('admin.users.department', compact('departments'));
     }
 
@@ -33,7 +36,7 @@ class DepartmentController extends Controller
             'dept_name' => $request->dept_name,
         ]);
 
-        return redirect()->route('course.index')->with('success', 'Department has been saved!');
+        return redirect()->route('department.index')->with('success', 'Department has been saved!');
     }
 
     /**
@@ -47,15 +50,11 @@ class DepartmentController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $department = Department::where('id', $id)->with(['courses'])->first();
+
+        return view('admin.users.departmentshow', compact('department'));
     }
 
     /**
@@ -66,7 +65,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $department = Department::find($id);
+        return response()->json($department);
     }
 
     /**
@@ -78,7 +78,17 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'dept_name'=>'required',
+        ]);
+        // dd($request->all());
+        $department = Department::find($id);
+
+        $department->dept_name = $request->input('dept_name');
+
+        $department->update();
+
+        return redirect('/department')->with('success','Department Updated');
     }
 
     /**

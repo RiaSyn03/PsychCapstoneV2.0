@@ -2,7 +2,7 @@
 
 @section('content')
 <section>
-  
+
      <header>
      <div class="logo"><img src="{{ asset('img/logo.gif') }}"></div>
          <ul>
@@ -25,11 +25,11 @@
                 </li>
                 <li><a href="{{ url('viewtime') }}" class="active">Appointments</a></li>
                 <li><a href="{{ url('viewquestions') }}">Questions</a></li>
-             <li><a href="{{ url('home') }}" >Home</a></li> 
+             <li><a href="{{ url('home') }}" >Home</a></li>
          </ul>
      </header>
      @include('partials.alerts')
-      <div class="card-body"> 
+      <div class="card-body">
       <br><br><br><br>
     <div class="tabbed">
     <input type="radio" name="tabs" id="tab-nav-1" checked>
@@ -41,7 +41,7 @@
     <input type="radio" name="tabs" id="tab-nav-4">
     <label for="tab-nav-4">Completed</label>
     <div class="tabs">
-    
+
       <div>
     <table class="table table-striped">
 <thead>
@@ -59,7 +59,7 @@
 </thead>
 <tbody id="dynamic-row">
 
-@foreach($timescheds as $t)
+@forelse($timescheds as $t)
 <tr>
 <input type="hidden" class="btn_val_id" value="{{ $t->id }}">
 <td><center><input type="hidden" name="user_idnum" value="{{ $t->user_idnum }}" ><p>{{ $t->user_idnum }}</p></center></td>
@@ -78,7 +78,10 @@
   <a href="{{url ('change-status/'.$t->id) }}" class="btn btn-danger">Pending</a>
   @endif
   <a href="/reschedule/{{$t->id}}" class="btn btn-warning" onclick="return confirm('Are you sure?')">Reschedule</a>
-@endforeach
+@empty
+    <td colspan="6" class="text-center">No Data</td>
+@endforelse
+
   <!-- Decline Modal -->
 <div class="p-2">
        <div id="popup">
@@ -106,13 +109,13 @@
    <br><br><br>
    <center><button type="submit" class="submitbtn" name="sendmail">Submit</button></center>
  </form>
-         
+
  <center> <div onclick="toggle()" class="submitbtn" >Close</div></center>
          </div>
         </div>
 </div>
 <!-- End of Modal -->
-    </td> 
+    </td>
 </tr>
 </tbody>
 </table>
@@ -131,7 +134,7 @@
 </tr>
 </thead>
 <tbody id="dynamic-row">
-@foreach($acceptedlist as $a)
+@forelse($acceptedlist as $a)
 <tr>
 <input type="hidden" class="btn_val_id" value="{{ $a->id }}">
 <td><center><input type="hidden" name="user_idnum" value="{{ $a->user_idnum }}" ><p>{{ $a->user_idnum }}</p></center></td>
@@ -145,9 +148,11 @@
   @else
   <a href="{{url ('change-done/'.$a->id) }}" class="btn btn-danger">Accepted</a>
   @endif
-    </td> 
+    </td>
 </tr>
-@endforeach
+@empty
+    <td colspan="6" class="text-center">No Data</td>
+@endforelse
 </tbody>
 </table>
 </div>
@@ -163,7 +168,7 @@
 </tr>
 </thead>
 <tbody id="dynamic-row">
-@foreach($reschedule as $r)
+@forelse($reschedule as $r)
 <tr>
 <input type="hidden" class="btn_val_id" value="{{ $r->id }}">
 <td><center><input type="hidden" name="user_idnum" value="{{ $r->user_idnum }}" ><p>{{ $r->user_idnum }}</p></center></td>
@@ -172,9 +177,11 @@
 <td><center><input type="hidden" name="time" value="{{ $r->time }} "><p>{{ $r->time }}</p></center></td>
 <td>
 <a href="/updateschedule/{{$r->id}}" class="btn btn-success">Update Time & Date</a>
-    </td> 
+    </td>
 </tr>
-@endforeach
+@empty
+    <td colspan="6" class="text-center">No Data</td>
+@endforelse
 </tbody>
 </table>
 </div>
@@ -189,14 +196,16 @@
 </tr>
 </thead>
 <tbody id="dynamic-row">
-@foreach($donelist as $d)
+@forelse($donelist as $d)
 <tr>
 <td><center><p>{{ $d->user_idnum }} </p></center></td>
 <td><center><p>{{ $d->user_fname }}</p></center></td>
 <td><center><p>{{ date('d F, Y', strtotime($d->date)) }}</p></center></td>
 <td><center><p>{{ $d->time }}</p></center></td>
 </tr>
-@endforeach
+@empty
+    <td colspan="6" class="text-center">No Data</td>
+@endforelse
 </tbody>
 </table>
 </div>
@@ -206,9 +215,9 @@
 <script>
   function toggle(){
     var popup = document.getElementById('popup');
-    popup.classList.toggle('active');  
+    popup.classList.toggle('active');
     var editpopup = document.getElementById('editpopup');
-    editpopup.classList.toggle('active');  
+    editpopup.classList.toggle('active');
   }
   </script>
 

@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ url('course') }}">Manage Course</a></li>
+                    <li><a href="{{ url('department') }}">Manage Department</a></li>
                     <li><a href="{{ url('manageappointments') }}">Manage Appointments</a></li>
                     <li><a href="{{ url('questions') }}">Manage Questions</a></li>
                     <li><a href="{{ url('user') }}" class="active">Manage Account</a></li>

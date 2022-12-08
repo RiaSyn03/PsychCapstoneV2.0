@@ -23,7 +23,7 @@
                         </div>
                       </div>
                 </li>
-                <li><a href="{{ url('course') }}">Manage Course</a></li>
+                <li><a href="{{ url('department') }}">Manage Department</a></li>
                 <li><a href="{{ url('manageappointments') }}">Manage Appointments</a></li>
                 <li><a href="{{ url('questions') }}" >Manage Questions</a></li>
                 <li><a href="{{ url('user') }}" >Manage Account</a></li>
@@ -103,6 +103,7 @@
              <li><a href="{{ url('home') }}" class="active">Home</a></li>
          </ul>
      </header>
+     @include('partials.alerts')
      <div class="student-align">
      <div class="studentcontainer">
         <div class="menu">

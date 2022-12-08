@@ -42,7 +42,7 @@
     <br><br><br>
   @endforeach
   <!-- <p>Total: £ <span id="total">0</span></p> -->
-  <input type="hidden" id="result_name" name="result_name" value=""/> 
+  <input type="hidden" id="result_name" name="result_name" value=""/>
   <br><br><br>    <br><br><br>
   <center>
 
@@ -50,7 +50,7 @@
   <button type="button" class="resultbtn" onclick="calculate()">Get Result</button>
   </center>
 
-  <!-- 
+  <!--
   <p>The Result is : <br>
     <span id = "result"></span>
   </p> -->
@@ -64,7 +64,7 @@
           </div>
         </div>
         <br><br><br>
-        <button type="submit" class="back-facebtn">Save to Exam History</button>
+        <button type="submit" class="back-facebtn">Done !</button>
         <br><br><br>
         <a href="#" onclick="calculate()">close</a>
 
@@ -81,10 +81,10 @@
         </div>
       </div>
                       <br><br><br>
-                      <button type="submit" class="back-facebtn">Save to Exam History</button>
+                      <button type="submit" class="back-facebtn">Done !</button>
                       <br><br><br>
                       <a href="#" onclick="calculate()">close</a>
-                    
+
                   </div>
               </div>
           </div>
@@ -98,10 +98,10 @@
         </div>
       </div>
                       <br><br><br>
-                      <button type="submit" class="back-facebtn">Save to Exam History</button>
+                      <button type="submit" class="back-facebtn">Done !</button>
                       <br><br><br>
                       <a href="#" onclick="calculate()">close</a>
-                      
+
                   </div>
               </div>
           </div>
@@ -115,10 +115,10 @@
         </div>
       </div>
                       <br><br><br>
-                      <button type="submit" class="back-facebtn">Save to Exam History</button>
+                      <button type="submit" class="back-facebtn">Done !</button>
                       <br><br><br>
                       <a href="#" onclick="calculate()">close</a>
-                    
+
                   </div>
               </div>
           </div>
@@ -132,10 +132,10 @@
         </div>
       </div>
                       <br><br><br>
-                      <button type="submit" class="back-facebtn">Save to Exam History</button>
+                      <button type="submit" class="back-facebtn">Done !</button>
                       <br><br><br>
                       <a href="#" onclick="calculate()">close</a>
-                    
+
                   </div>
               </div>
           </div>
@@ -144,7 +144,7 @@
   </body>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/piechart.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
     function calculate(){
 
@@ -182,7 +182,7 @@
 
           });
           $("#total").text(total);
-        
+
           // $("#result").text(notstress);
           if(total <= 4 ){
             // var blur = document.getElementById('blur');
@@ -190,37 +190,37 @@
             var notstressmodal = document.getElementById('not-stressmodal');
             notstressmodal.classList.toggle('active');
             $("#result_name").val("You don't have a depression");
-            
-            
+
+
           } else if (total <= 9) {
             // var blur = document.getElementById('blur');
             // blur.classList.toggle('active');
             var stressmodal = document.getElementById('stressmodal');
             stressmodal.classList.toggle('active');
             $("#result_name").val("You have mild depression");
-          
+
           }else if (total <= 14) {
             // var blur = document.getElementById('blur');
             // blur.classList.toggle('active');
             var superstressmodal = document.getElementById('super-stressmodal');
             superstressmodal.classList.toggle('active');
             $("#result_name").val("You have moderate depression");
-          
+
           } else if (total <= 19) {
             // var blur = document.getElementById('blur');
             // blur.classList.toggle('active');
             var moderatelystressmodal = document.getElementById('moderately-severe-stressmodal');
             moderatelystressmodal.classList.toggle('active');
-        
+
             $("#result_name").val("You have a moderately severe depression");
-          
+
           } else if (total > 20) {
             // var blur = document.getElementById('blur');
             // blur.classList.toggle('active');
             var severemodal = document.getElementById('severe-stressmodal');
             severemodal.classList.toggle('active');
             $("#result_name").val("You have severe depression");
-          
+
           }else {
             alert ("Please answer all the questions");
             return false;

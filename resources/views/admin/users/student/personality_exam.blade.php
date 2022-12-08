@@ -8,7 +8,7 @@
          <li><a href="{{ url('home') }}">Go to Homepage</a></li>
          <li><a href="{{ url('learner_exam') }}">Learner</a></li>
          <li><a href="{{ url('personality_exam') }}" class="active">Personality</a></li>
-        <li><a href="{{ url('stress_exam') }}" >Stress Scale</a></li>  
+        <li><a href="{{ url('stress_exam') }}" >Stress Scale</a></li>
          </ul>
      </header>
      <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -47,7 +47,7 @@
     <br><br><br>
 @endforeach
 <!-- <p>Total: £ <span id="total">0</span></p> -->
-<input type="hidden" id="result_name" name="result_name" value=""/> 
+<input type="hidden" id="result_name" name="result_name" value=""/>
 <br><br><br>    <br><br><br>
 <center>
 
@@ -56,7 +56,7 @@
 
 </center>
 
-<!-- 
+<!--
 <p>The Result is : <br>
 	<span id = "result"></span>
 </p> -->
@@ -66,7 +66,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="button" class="back-categorybtn">Go to Categories</button></a>
                 <br><br><br>
-                    <button type="submit" class="back-facebtn">Save to Exam History</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                     <br><br><br>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="button" class="back-categorybtn">Go to Categories</button></a>
                     <br><br><br>
-                    <button type="submit" class="back-facebtn">Submit</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                     <br><br><br>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 <div class="back-face"><br><br><br><br><br><br><br><br><br>
                 <a href="{{ url('category') }}"><button type="button" class="back-categorybtn">Go to Categories</button></a>
                     <br><br><br>
-                    <button type="submit" class="back-facebtn">Submit</button>
+                    <button type="submit" class="back-facebtn">Done !</button>
                     <br><br><br>
                 </div>
             </div>
@@ -96,7 +96,7 @@
         </form>
   <input type="hidden" value="{{$questioncount}}" id="noquestions" name="noquestions"/><br>
 </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script>
   function calculate(){
@@ -130,13 +130,13 @@
 
           });
           $("#total").text(total);
-    
-    
+
+
     var introvert = maxscore*0.25;
     var ambivert = maxscore*0.50;
     var extrovert = maxscore*0.75;
     // $("#result").text(notstress);
-    
+
     if(total <= introvert )
     {
       // var blur = document.getElementById('blur');
@@ -144,8 +144,8 @@
       var notstressmodal = document.getElementById('not-stressmodal');
       notstressmodal.classList.toggle('active');
       $("#result_name").val("You are an introvert");
-      
-       
+
+
         }
 
     else if (total <= extrovert)
@@ -162,7 +162,7 @@
       // blur.classList.toggle('active');
       var superstressmodal = document.getElementById('super-stressmodal');
       superstressmodal.classList.toggle('active');
-   
+
       $("#result_name").val("You are an extrovert");
     }
   else {

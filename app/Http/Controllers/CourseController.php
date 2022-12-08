@@ -117,7 +117,6 @@ class CourseController extends Controller
     public function destroy(Course $courses, $id)
     {
         $courses = Course::find($id);
-        $courses->department()->detach();
         $courses->delete();
 
         return redirect()->route('course.index')->with('message', 'This course has been deleted.');

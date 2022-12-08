@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        $adminRole = Role::where('role_name', 'admin') -> first();
-        $counselorRole = Role::where('role_name', 'counselor') -> first();
-        $studentRole = Role::where('role_name', 'student') -> first();
+        // $adminRole = Role::where('role_name', 'admin') -> first();
+        // $counselorRole = Role::where('role_name', 'counselor') -> first();
+        // $studentRole = Role::where('role_name', 'student') -> first();
 
         $admin = User::create([
             'role_id'=>'1',
@@ -55,8 +55,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt ('student')
         ]);
 
-        $admin->role()->attach($adminRole);
-        $counselor->role()->attach($counselorRole);
-        $student->role()->attach($studentRole);
+        // $admin->role()->attach($adminRole);
+        // $counselor->role()->attach($counselorRole);
+        // $student->role()->attach($studentRole);
     }
 }

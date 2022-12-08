@@ -49,8 +49,8 @@ header .logo
 {
   position: relative;
   left: 100px;
-  bottom: 30px;
-    width: 400px;
+  bottom: 14px;
+    width: 260px;
     height: 40px;
 }
 header .logo img
@@ -173,7 +173,7 @@ th h2
 }
 
 .tabbed {
-  width: 700px;
+  width: 1090px;
   margin: 50px auto;
 }
 

@@ -105,6 +105,7 @@
             </div>
         </nav> --}}
          @yield('content')
+         @include('partials.alerts')
         </main>
     </div>
 

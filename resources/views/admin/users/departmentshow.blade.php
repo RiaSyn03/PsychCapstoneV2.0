@@ -36,8 +36,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -50,26 +48,27 @@
                     <ul>
                         <li>
                             <div class="dropdown">
-                                <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                                <a class="dropdown-toggle " id="dropdownMenuButton" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->fname }} <span class="caret"></span>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
+                                        >
                                         @csrf
                                     </form>
                                 </div>
                             </div>
                         </li>
-                        <li><a href="{{ url('department') }}" class="active">Manage Department</a></li>
+                        <li><a href="{{ url('department') }}">Manage Department</a></li>
+                        <li><a href="{{ url('manageappointments') }}">Manage Appointments</a></li>
                         <li><a href="{{ url('questions') }}">Manage Questions</a></li>
-                        <li><a href="{{ url('user') }}">Manage Account</a></li>
+                        <li><a href="{{ url('user') }}" class="active">Manage Account</a></li>
                         <li><a href="{{ route('home') }} ">Dashboard</a></li>
                     </ul>
                 </header>
@@ -143,8 +142,8 @@
                                         <label class="input-group-text" for="dept_id">Department</label>
                                         <select class="form-select" id="defaultdept" name="dept_id">
                                             <option>Choose Department</option>
-                                            @foreach ($department->courses as $dept)
-                                                <option value="{{ $dept }}"{{$department->id == $course->dept_id ? 'selected': ''}}>{{ $dept }}</option>
+                                            @foreach ($department as $dept)
+                                                {{-- <option value="{{ $dept->id }}">{{ $dept->dept_name }}</option> --}}
                                             @endforeach
                                         </select>
                                     </div>
@@ -180,8 +179,8 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

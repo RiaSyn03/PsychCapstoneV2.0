@@ -18,14 +18,14 @@
 <div class="alert alert-success alert-dismissable" role="alert">
 @endif
 
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 {{session ('message') }}
 </div>
 </div>
 @endif
 
 <script type="text/javascript">
-  $("document").ready(function()
+  $(document).ready(function()
   {
     setTimeout(function()
     {
